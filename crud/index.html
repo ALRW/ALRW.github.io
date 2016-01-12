@@ -1,0 +1,199 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CRUD?</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=fc55e658cd">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://localhost:2368/crud/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Tinker, Tailor, Soldier ... Coder?">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CRUD?">
+    <meta property="og:description" content="According to Google, CRUD is defined as something which is considered disgusting or unpleasant or alternatively as nonsense. In relation to databases however, CRUD is an acronym that covers the basic operations that you can undertake on the database. These...">
+    <meta property="og:url" content="http://localhost:2368/crud/">
+    <meta property="article:published_time" content="2015-11-09T09:13:00.000Z">
+    <meta property="article:modified_time" content="2016-01-12T09:40:14.666Z">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CRUD?">
+    <meta name="twitter:description" content="According to Google, CRUD is defined as something which is considered disgusting or unpleasant or alternatively as nonsense. In relation to databases however, CRUD is an acronym that covers the basic operations that you can undertake on the database. These...">
+    <meta name="twitter:url" content="http://localhost:2368/crud/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Tinker, Tailor, Soldier ... Coder?",
+    "author": {
+        "@type": "Person",
+        "name": "Andrew Werner",
+        "url": "http://localhost:2368/author/andrew",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "CRUD?",
+    "url": "http://localhost:2368/crud/",
+    "datePublished": "2015-11-09T09:13:00.000Z",
+    "dateModified": "2016-01-12T09:40:14.666Z",
+    "description": "According to Google, CRUD is defined as something which is considered disgusting or unpleasant or alternatively as nonsense. In relation to databases however, CRUD is an acronym that covers the basic operations that you can undertake on the database. These..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Tinker, Tailor, Soldier ... Coder?" href="http://localhost:2368/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://localhost:2368/">Home</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://localhost:2368/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">CRUD?</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-11-09">09 November 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>According to Google, CRUD is defined as something which is considered disgusting or unpleasant or alternatively as nonsense. In relation to databases however, CRUD is an acronym that covers the basic operations that you can undertake on the database. These are:</p>
+
+<blockquote>
+  <p>Create - Adding new data to the database</p>
+  
+  <p>Read - Accessing currently held information</p>
+  
+  <p>Update - Modifying currently held data</p>
+  
+  <p>Delete - Removing data</p>
+</blockquote>
+
+<p>The most commonly used language to perform these actions on a database is SQL, which stands for Structured Query Language. This language has certain commands which map directly to the different CRUD elements. Some simple examples are:  </p>
+
+<pre><code>CREATE TABLE student (id serial PRIMARY KEY, name varchar(80));  
+</code></pre>
+
+<p>This creates a database table "students" where we can carry out our operations. To create data we use the following basic command:  </p>
+
+<pre><code>INSERT INTO students (id, name)  
+VALUES (1, 'Jam3s');  
+</code></pre>
+
+<p>We have now created an entry in our database. But our name has a typo so we now want to update it.  </p>
+
+<pre><code>UPDATE student SET name = 'James' WHERE id = 1  
+</code></pre>
+
+<p>Great! our entry is now exactly what we want but just to double check we want to read the entry from the database.  </p>
+
+<pre><code>SELECT name FROM student WHERE id = 1  
+</code></pre>
+
+<p>James has now left the school so we need to remove him from the database. Our final operation should look like the following:  </p>
+
+<pre><code>DELETE FROM student WHERE id = 1  
+</code></pre>
+
+<p>
+As a final note, you can see that the SELECT statement and the DELETE statement are pretty similar. Given the finality of the delete command it is always a good idea to carry out a select query first to make sure you are deleting what you think.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/andrew/">Andrew Werner</a></h4>
+
+                    <p>Read <a href="../author/andrew/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=CRUD%3F&amp;url=http://localhost:2368/crud/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/crud/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/crud/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../databases/">
+        <section class="post">
+            <h2>Databases</h2>
+            <p>Persistent data storage can simply be defined as the storage of data "long-term". That is to say, it outlives…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../dependency-injection-what-is-it/">
+        <section class="post">
+            <h2>Dependency Injection, What is it?</h2>
+            <p>To understand Dependency injection it is first critical to know about Concrete Dependency. That is where one object has…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://localhost:2368">Tinker, Tailor, Soldier ... Coder?</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=fc55e658cd"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=fc55e658cd"></script>
+
+</body>
