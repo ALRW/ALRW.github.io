@@ -1,0 +1,382 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=e234546730">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Tinker, Tailor, Soldier ... Coder?">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way">
+    <meta property="og:description" content="Setting the Scene   For anyone who hasn't touched Angular JS before the promise of a framework that can create fantastic user interfaces that are almost instantaneously responsive is a big draw. Its ability to allow the creation of single page...">
+    <meta property="og:url" content="http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-01-at-14-28-27.png">
+    <meta property="article:published_time" content="2016-02-01T15:54:47.014Z">
+    <meta property="article:modified_time" content="2016-02-01T15:54:47.012Z">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way">
+    <meta name="twitter:description" content="Setting the Scene   For anyone who hasn't touched Angular JS before the promise of a framework that can create fantastic user interfaces that are almost instantaneously responsive is a big draw. Its ability to allow the creation of single page...">
+    <meta name="twitter:url" content="http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/">
+    <meta name="twitter:image:src" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-01-at-14-28-27.png">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Tinker, Tailor, Soldier ... Coder?",
+    "author": {
+        "@type": "Person",
+        "name": "Andrew Werner",
+        "url": "http://localhost:2368/author/andrew",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way",
+    "url": "http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/",
+    "datePublished": "2016-02-01T15:54:47.014Z",
+    "dateModified": "2016-02-01T15:54:47.012Z",
+    "image": "http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-01-at-14-28-27.png",
+    "description": "Setting the Scene   For anyone who hasn&#x27;t touched Angular JS before the promise of a framework that can create fantastic user interfaces that are almost instantaneously responsive is a big draw. Its ability to allow the creation of single page..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Tinker, Tailor, Soldier ... Coder?" href="http://localhost:2368/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://localhost:2368/">Home</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://localhost:2368/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head " style="background-image: url(../content/images/2016/02/Screen-Shot-2016-02-01-at-14-28-27.png)">
+    <nav class="main-nav overlay clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-02-01">01 February 2016</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <h2 id="settingthescene">Setting the Scene  </h2>
+
+<p>For anyone who hasn't touched Angular JS before the promise of a framework that can create fantastic user interfaces that are almost instantaneously responsive is a big draw. Its ability to allow the creation of <a href="https://en.wikipedia.org/wiki/Single-page_application">single page applications</a> is also a massive plus but by throwing into the mix the integration of testing (unit and end to end) as a key part of the Angular project and you have a match made in heaven. </p>
+
+<p>Now as an angular novice who wants to dive into writing tests and maybe even a bit of Angular code to perhaps make those tests pass there is one significant hurdle: setting up your test environment. This blog aims to act as a one stop shop Cheat-Sheet to take you from zero to coding in as few steps as possible. If at any point I've not covered anything in depth then the <a href="https://docs.angularjs.org/api">Angular documentation</a> is a brilliant resource that can help you with the weeds.</p>
+
+<h2 id="startingout">Starting out  </h2>
+
+<p>First things first there are some pre-requisites that are required in order to get things up and running. Make sure you have <code>node</code> and <code>bower</code> installed by running the following commands in a terminal:</p>
+
+<pre><code>node -v  
+bower -v  
+</code></pre>
+
+<p>If either of these does not return a version number then they can be installed with the following:</p>
+
+<pre><code>brew install node  
+npm install bower -g  
+</code></pre>
+
+<p>Now we are good to get moving.</p>
+
+<h2 id="gettingtheboilerplateupandrunning">Getting the Boilerplate up and Running  </h2>
+
+<p>At this point we are good to create our project directory:</p>
+
+<pre><code>mkdir new_project  
+cd new_project  
+</code></pre>
+
+<p>and setup our dependency manager:</p>
+
+<pre><code>bower init  
+</code></pre>
+
+<p>At this point you can simply press enter and fill the <code>bower.json</code> with default information.</p>
+
+<p>There are two ways that you can include angular in a project either by including the remote link in your html page.</p>
+
+<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&gt;&lt;/script&gt;  
+</code></pre>
+
+<p>Or as we will do using our newly installed package manager.</p>
+
+<pre><code>bower install angular --save  
+</code></pre>
+
+<p>By keeping the Angular file locally during development you can save time and network resources as you only have to load the file once.</p>
+
+<p>Once installed using <code>bower</code> Angular can now be included in your projects (currently) blank homepage in this case: <code>index.html</code>.</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;  
+&lt;html lang="en"&gt;  
+&lt;head&gt;  
+  &lt;meta charset="UTF-8"&gt;
+  &lt;script src="bower_components/angular/angular.js"&gt;&lt;/script&gt;
+  &lt;title&gt;New Project&lt;/title&gt;
+&lt;/head&gt;  
+&lt;body&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+
+<h2 id="preparingthewayforunittesting">Preparing the way for Unit Testing  </h2>
+
+<p>With that in place we are ready to get our unit testing setup. At its base Angular uses the <a href="http://jasmine.github.io/">Jasmine Framework</a> augmented by <a href="http://karma-runner.github.io/0.13/index.html">Karma</a> which is used to run the tests.</p>
+
+<p>To setup this environment we first need to install Angular mocks and Angular route, modules that make mocking various aspects of an Angular App simple.</p>
+
+<pre><code>bower install angular-mocks --save-dev  
+bower install angular-route --save-dev  
+</code></pre>
+
+<p>The <code>--save-dev</code> specifies that these dependencies will only be installed in a development environment.</p>
+
+<p>Next up we need to create a file called a <code>package.json</code> that lists the <code>node</code> dependencies: our Karma and Jasmine files.</p>
+
+<pre><code>npm init  
+</code></pre>
+
+<p>Again here you can simply press enter to create a default <code>package.json</code>. Now let install our node packages.</p>
+
+<pre><code>npm install karma karma-jasmine jasmine-core phantomjs karma-chrome-launcher karma-phantomjs-launcher --save-dev  
+npm install karma-cli -g  
+</code></pre>
+
+<p>With all this installed we can create the config file required for Karma to run.</p>
+
+<pre><code>karma init  
+</code></pre>
+
+<p>Answer the questions asked when running through the init process in order to create a file called <code>karma.conf.js</code>. This will hold all the information to run your tests and should look similar to the following for this project. </p>
+
+<pre><code>module.exports = function(config) {  
+  config.set({
+
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: '../',
+
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+
+    // list of files / patterns to load in the browser
+    files: [
+      'bower_components/angular/angular.js',
+      'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      '*.js',
+      'test/*.spec.js'
+    ],
+
+
+    // list of files to exclude
+    exclude: [],
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {},
+
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
+
+
+    // web server port
+    port: 9876,
+
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['PhantomJS'],
+
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: true
+  });
+};
+</code></pre>
+
+<p>By convention this file should be placed into a <code>test</code> folder such that our folder tree would now look something like this:</p>
+
+<p><img src="../content/images/2016/02/Screen-Shot-2016-02-01-at-15-32-51.png" alt=""></p>
+
+<p>Although we haven't written any tests yet we should now be able to run Karma and see things fail using:</p>
+
+<pre><code>karma start test/karma.conf.js  
+</code></pre>
+
+<p>We are now good to go with unit testing!</p>
+
+<h2 id="thefinalhurdleendtoendtesting">The Final Hurdle - End to End Testing  </h2>
+
+<p>End to End testing allows us to create tests that run through the functionality of our Angular App in the same way that a normal day to day user would. As such they are crucial when connecting together our various controllers, directives and services into a functioning whole. Luckily for us Angular has a tool called <a href="https://angular.github.io/protractor/#/">Protractor</a> that is designed exactly for this.</p>
+
+<p>There's no getting away from it, another load of installation is required. Firstly:</p>
+
+<pre><code>npm install protractor -g  
+npm install protractor --save-dev  
+</code></pre>
+
+<p>The reason for the double install is to ensure that we hold protractor globally but also to make sure that it is listed in our projects <code>package.json</code> as a dev dependency.</p>
+
+<p>For our tests to work we need to have our project running on a server locally and for this the easiest tool to use is <code>http-server</code>. Install it:</p>
+
+<pre><code>npm install http-server -g &amp;&amp; npm install http-server --save  
+</code></pre>
+
+<p>Next we need to create a configuration file similar to the one we made for Karma to tell us tests where to go and what to run. Create a new file <code>test/conf.js</code> and add the following to it replacing <code>nameOfMyFeatureTestFile.js</code> with your feature test file:</p>
+
+<pre><code>exports.config = {  
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  specs: ['nameOfMyFeatureTestFile.js']
+}
+</code></pre>
+
+<p>We can now get to the business of writing and running our tests:</p>
+
+<p>Lets start with a simple one:</p>
+
+<pre><code>describe('My New Project', function() {  
+  it('has a title', function() {
+    browser.get('http://localhost:8080');
+
+    expect(browser.getTitle()).toEqual('New Project');
+  });
+});
+</code></pre>
+
+<p>Open a terminal and run:</p>
+
+<pre><code>http-server  
+</code></pre>
+
+<p>Open another and run:</p>
+
+<pre><code>webdriver-manager start  
+</code></pre>
+
+<p>and finally:</p>
+
+<pre><code>protractor test/conf.js  
+</code></pre>
+
+<p>Voilla! <code>1 test, 1 assertion, 0 failures</code>.</p>
+
+<p>Happy Testing.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/andrew/">Andrew Werner</a></h4>
+
+                    <p>Read <a href="../author/andrew/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Cheatsheet...ish%3A%20Setting%20Up%20An%20Angular%20JS%20Project%20The%20TDD%20Way&amp;url=http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/setting-up-an-angular-js-project-the-tdd-way/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev " style="background-image: url(../content/images/2016/02/Worlds_largest_Swiss_Army_knife_wenger_giant_knife.jpg)" href="../the-single-responsibility-principle/">
+        <section class="post">
+            <h2>The Single Responsibility Principle</h2>
+            <p>The Single Responsibility Principle is used to keep classes or methods compact and easy to understand. It allows the…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://localhost:2368">Tinker, Tailor, Soldier ... Coder?</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=e234546730"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=e234546730"></script>
+
+</body>
