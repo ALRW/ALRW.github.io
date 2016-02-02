@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=aab71ebe9d">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=b5022d2d87">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
 
     <link rel="canonical" href="http://localhost:2368/exploring-encapsulation/">
@@ -22,13 +22,15 @@
     <meta property="og:title" content="Exploring Encapsulation">
     <meta property="og:description" content="What is encapsulation? Perhaps another abstract principle that we should only care about regurgitating for a job interview? Principles can often seem that way: handy to know about but often discarded. However, in order to create maintainable modular Encapsulation is...">
     <meta property="og:url" content="http://localhost:2368/exploring-encapsulation/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2016/02/0531_WVbacteria.jpg">
     <meta property="article:published_time" content="2015-10-23T08:09:00.000Z">
-    <meta property="article:modified_time" content="2016-01-12T09:40:01.418Z">
+    <meta property="article:modified_time" content="2016-02-02T14:00:34.000Z">
     
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Exploring Encapsulation">
     <meta name="twitter:description" content="What is encapsulation? Perhaps another abstract principle that we should only care about regurgitating for a job interview? Principles can often seem that way: handy to know about but often discarded. However, in order to create maintainable modular Encapsulation is...">
     <meta name="twitter:url" content="http://localhost:2368/exploring-encapsulation/">
+    <meta name="twitter:image:src" content="http://localhost:2368/content/images/2016/02/0531_WVbacteria.jpg">
     
     <script type="application/ld+json">
 {
@@ -45,7 +47,8 @@
     "headline": "Exploring Encapsulation",
     "url": "http://localhost:2368/exploring-encapsulation/",
     "datePublished": "2015-10-23T08:09:00.000Z",
-    "dateModified": "2016-01-12T09:40:01.418Z",
+    "dateModified": "2016-02-02T14:00:34.000Z",
+    "image": "http://localhost:2368/content/images/2016/02/0531_WVbacteria.jpg",
     "description": "What is encapsulation? Perhaps another abstract principle that we should only care about regurgitating for a job interview? Principles can often seem that way: handy to know about but often discarded. However, in order to create maintainable modular Encapsulation is..."
 }
     </script>
@@ -80,8 +83,8 @@
         
 
 
-<header class="main-header post-head no-cover">
-    <nav class="main-nav  clearfix">
+<header class="main-header post-head " style="background-image: url(../content/images/2016/02/0531_WVbacteria.jpg)">
+    <nav class="main-nav overlay clearfix">
         
             <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
     </nav>
@@ -106,9 +109,9 @@
 
 <p>Perhaps a better description of exactly what this means can be found here. By following encapsulation we are trying to ensure that an objects internal data can only be accessed and modified by itself rather than through the public interface.</p>
 
-<p>The following example shows a very simplistic case of badly encapsulated code.  </p>
+<p>The following example shows a very simplistic case of badly encapsulated code.</p>
 
-<pre><code>class Person
+<pre><code class="language-ruby">class Person
 
   attr_accessor :first_name, :last_name
 
@@ -123,9 +126,9 @@
 end  
 </code></pre>
 
-<p>The simple reason that this is bad code is that if we create a new person another object can directly access the person and change their name at will. Their private data is accessible to the outside world. To refactor this we would simply replace our example with the following code:  </p>
+<p>The simple reason that this is bad code is that if we create a new person another object can directly access the person and change their name at will. Their private data is accessible to the outside world. To refactor this we would simply replace our example with the following code:</p>
 
-<pre><code>class Person
+<pre><code class="language-ruby">class Person
 
   attr_reader :first_name, :last_name
 
@@ -181,7 +184,7 @@ end
 </main>
 
 <aside class="read-next">
-    <a class="read-next-story no-cover" href="../dependency-injection-what-is-it/">
+    <a class="read-next-story " style="background-image: url(../content/images/2016/02/top-dependency-injection-in-angularjs-800x400.jpg)" href="../dependency-injection-what-is-it/">
         <section class="post">
             <h2>Dependency Injection, What is it?</h2>
             <p>To understand Dependency injection it is first critical to know about Concrete Dependency. That is where one object has…</p>
@@ -201,7 +204,7 @@ end
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     
 
-    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=aab71ebe9d"></script>
-    <script type="text/javascript" src="../assets/js/index.js?v=aab71ebe9d"></script>
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=b5022d2d87"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=b5022d2d87"></script>
 
 </body>
