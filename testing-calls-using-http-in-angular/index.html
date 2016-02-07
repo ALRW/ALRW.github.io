@@ -1,0 +1,226 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Testing the Angular $http Service</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=dcfd39909e">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://localhost:2368/testing-calls-using-http-in-angular/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Tinker, Tailor, Soldier ... Coder?">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Testing the Angular $http Service">
+    <meta property="og:description" content="As a number of smaller applications I've worked on have grown there has often been a requirement to integrate data and functionality from outside service using their API's. When working with Angular at the simplest level this often involves using...">
+    <meta property="og:url" content="http://localhost:2368/testing-calls-using-http-in-angular/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-07-at-14-59-35.png">
+    <meta property="article:published_time" content="2016-02-07T18:14:05.242Z">
+    <meta property="article:modified_time" content="2016-02-07T18:14:05.239Z">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Testing the Angular $http Service">
+    <meta name="twitter:description" content="As a number of smaller applications I've worked on have grown there has often been a requirement to integrate data and functionality from outside service using their API's. When working with Angular at the simplest level this often involves using...">
+    <meta name="twitter:url" content="http://localhost:2368/testing-calls-using-http-in-angular/">
+    <meta name="twitter:image:src" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-07-at-14-59-35.png">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Tinker, Tailor, Soldier ... Coder?",
+    "author": {
+        "@type": "Person",
+        "name": "Andrew Werner",
+        "url": "http://localhost:2368/author/andrew",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Testing the Angular $http Service",
+    "url": "http://localhost:2368/testing-calls-using-http-in-angular/",
+    "datePublished": "2016-02-07T18:14:05.242Z",
+    "dateModified": "2016-02-07T18:14:05.239Z",
+    "image": "http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-07-at-14-59-35.png",
+    "description": "As a number of smaller applications I&#x27;ve worked on have grown there has often been a requirement to integrate data and functionality from outside service using their API&#x27;s. When working with Angular at the simplest level this often involves using..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Tinker, Tailor, Soldier ... Coder?" href="http://localhost:2368/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://alrw.github.io/">Home</a></li>
+            <li class="nav-exploring-encapsulation" role="presentation"><a href="http://alrw.github.io/exploring-encapsulation/">Exploring Encapsulation</a></li>
+            <li class="nav-dependency-injection" role="presentation"><a href="http://alrw.github.io/dependency-injection-what-is-it/">Dependency Injection</a></li>
+            <li class="nav-crud" role="presentation"><a href="http://alrw.github.io/crud/">CRUD</a></li>
+            <li class="nav-creating-a-ghost-blog" role="presentation"><a href="http://alrw.github.io/creating-a-ghost-blog-using-github-pages/">Creating a Ghost Blog</a></li>
+            <li class="nav-databases" role="presentation"><a href="http://alrw.github.io/databases/">Databases</a></li>
+            <li class="nav-single-responsibility-principle" role="presentation"><a href="http://alrw.github.io/the-single-responsibility-principle/">Single Responsibility Principle</a></li>
+            <li class="nav-angular-tdd" role="presentation"><a href="http://alrw.github.io/setting-up-an-angular-js-project-the-tdd-way/">Angular TDD</a></li>
+            <li class="nav-testing-http" role="presentation"><a href="http://alrw.github.io/testing-calls-using-http-in-angular/">Testing $http</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://localhost:2368/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head " style="background-image: url(../content/images/2016/02/Screen-Shot-2016-02-07-at-14-59-35.png)">
+    <nav class="main-nav overlay clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Testing the Angular $http Service</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-02-07">07 February 2016</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>As a number of smaller applications I've worked on have grown there has often been a requirement to integrate data and functionality from outside service using their API's. When working with Angular at the simplest level this often involves using the <code>$http</code> service, so far so good. However, I would often find that while I could get the requests themselves working and functioning for end to end testing actually mocking the API calls was a real blocker. In the end as ever this turned out to be relatively simple to solve and I hope that this short post can help anyone out there in the future who is also stumbling around this issue.</p>
+
+<h2 id="mockingmockingmocking">Mocking Mocking Mocking  </h2>
+
+<p>With a blank boilerplate setup (as detailed in this <a href="http://alrw.github.io/setting-up-an-angular-js-project-the-tdd-way/">post</a>, ensuring that Angular Mocks are installed) I now want to be able to create the functionality within my application that will allow be to pull in data from an external API and test that this is being done correctly. Starting with the following blank controller:</p>
+
+<pre><code>var App = angular.module('App', []);
+
+App.controller('Controller', [function(){  
+}]);
+</code></pre>
+
+<p>Now to begin with we need to setup our tests to use this controller; in our test file we start with:</p>
+
+<pre><code>describe('Controller', function(){  
+  var ctrl;
+  beforeEach(module('App'));
+
+  beforeEach(inject(function($controller){
+    ctrl = $controller('Controller');
+  }));
+});
+</code></pre>
+
+<p>We can now reference the controller properly in our test and check the services and methods that it is calling.</p>
+
+<p>The key part to all of this comes in the inclusion of Angular Mocks that provide us with access to the <code>$httpBackend</code> <a href="https://docs.angularjs.org/api/ngMock/service/%24httpBackend">service</a>. This is a pre-built mock that will in effect take any of the calls made by our program during our tests and ensure that they do not leave the system. Why do we want to do this? In short to reduce the load placed on our own and the API vendors systems with unwanted and un-needed traffic. In the same way we just injected our controller into our test we now need to inject the <code>$httpBackend</code> service using another service: <code>$injector</code>.</p>
+
+<pre><code>beforeEach(inject(function($injector){  
+    $httpBackend = $injector.get('$httpBackend');
+  }));
+</code></pre>
+
+<p>We now have everything that is required and we can go ahead with writing that test:</p>
+
+<pre><code>it('makes and API call', inject(function($http){  
+    $httpBackend
+    .expect('GET', 'https://api.github.com/')
+    .respond(200, {foo:'bar'});
+    $httpBackend.flush();
+    expect(ctrl.products).toEqual({foo:'bar'});
+}));
+</code></pre>
+
+<p>Going through the test we first inject the <code>$http</code> function that is required for <code>$httpBackend</code>. Then we tell our test how to handle a <code>GET</code> call to the API by asking it to respond with the object <code>{foo:'bar'}</code>. The final part to note is that we need to run the <code>.flush()</code> method on <code>$httpBackend</code> to allow the test to execute synchronously. Finally we can then set our expectation to receive our mocked return object. Quickly padding out the controller:</p>
+
+<pre><code>App.controller('Controller', ['$http', function($http){  
+  var self = this;
+  self.apiCall = function(){
+    $http.get('https://api.github.com')
+    .then(function(response){
+      // do something here with response.data
+    });
+  };
+  self.apiCall();
+}]);
+</code></pre>
+
+<p>Should now give us the ability to get the green light from Karma:</p>
+
+<pre><code>Executed 1 of 1 SUCCESS  
+</code></pre>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/andrew/">Andrew Werner</a></h4>
+
+                    <p>Read <a href="../author/andrew/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Testing%20the%20Angular%20%24http%20Service&amp;url=http://localhost:2368/testing-calls-using-http-in-angular/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/testing-calls-using-http-in-angular/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/testing-calls-using-http-in-angular/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev " style="background-image: url(../content/images/2016/02/Screen-Shot-2016-02-01-at-14-28-27.png)" href="../setting-up-an-angular-js-project-the-tdd-way/">
+        <section class="post">
+            <h2>Cheatsheet...ish: Setting Up An Angular JS Project The TDD Way</h2>
+            <p>Setting the Scene   For anyone who hasn't touched Angular JS before the promise of a framework that can create…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://localhost:2368">Tinker, Tailor, Soldier ... Coder?</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=dcfd39909e"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=dcfd39909e"></script>
+
+</body>
