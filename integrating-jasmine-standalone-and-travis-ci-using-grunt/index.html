@@ -1,0 +1,247 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Integrating Jasmine Standalone and Travis CI using Grunt</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=7b31997186">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Tinker, Tailor, Soldier ... Coder?">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Integrating Jasmine Standalone and Travis CI using Grunt">
+    <meta property="og:description" content="A while ago I started messing around with a few projects while trying to learn JavaScript, particularly focusing on how to bend it into working in an object oriented way. To test I used the excellent Jasmine Standalone Framework which...">
+    <meta property="og:url" content="http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-09-at-14-24-37.png">
+    <meta property="article:published_time" content="2016-02-09T15:05:50.686Z">
+    <meta property="article:modified_time" content="2016-02-09T15:05:50.684Z">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Integrating Jasmine Standalone and Travis CI using Grunt">
+    <meta name="twitter:description" content="A while ago I started messing around with a few projects while trying to learn JavaScript, particularly focusing on how to bend it into working in an object oriented way. To test I used the excellent Jasmine Standalone Framework which...">
+    <meta name="twitter:url" content="http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/">
+    <meta name="twitter:image:src" content="http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-09-at-14-24-37.png">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Tinker, Tailor, Soldier ... Coder?",
+    "author": {
+        "@type": "Person",
+        "name": "Andrew Werner",
+        "url": "http://localhost:2368/author/andrew",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Integrating Jasmine Standalone and Travis CI using Grunt",
+    "url": "http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/",
+    "datePublished": "2016-02-09T15:05:50.686Z",
+    "dateModified": "2016-02-09T15:05:50.684Z",
+    "image": "http://localhost:2368/content/images/2016/02/Screen-Shot-2016-02-09-at-14-24-37.png",
+    "description": "A while ago I started messing around with a few projects while trying to learn JavaScript, particularly focusing on how to bend it into working in an object oriented way. To test I used the excellent Jasmine Standalone Framework which..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Tinker, Tailor, Soldier ... Coder?" href="http://localhost:2368/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://alrw.github.io/">Home</a></li>
+            <li class="nav-exploring-encapsulation" role="presentation"><a href="http://alrw.github.io/exploring-encapsulation/">Exploring Encapsulation</a></li>
+            <li class="nav-dependency-injection" role="presentation"><a href="http://alrw.github.io/dependency-injection-what-is-it/">Dependency Injection</a></li>
+            <li class="nav-crud" role="presentation"><a href="http://alrw.github.io/crud/">CRUD</a></li>
+            <li class="nav-creating-a-ghost-blog" role="presentation"><a href="http://alrw.github.io/creating-a-ghost-blog-using-github-pages/">Creating a Ghost Blog</a></li>
+            <li class="nav-databases" role="presentation"><a href="http://alrw.github.io/databases/">Databases</a></li>
+            <li class="nav-single-responsibility-principle" role="presentation"><a href="http://alrw.github.io/the-single-responsibility-principle/">Single Responsibility Principle</a></li>
+            <li class="nav-angular-tdd" role="presentation"><a href="http://alrw.github.io/setting-up-an-angular-js-project-the-tdd-way/">Angular TDD</a></li>
+            <li class="nav-testing-http" role="presentation"><a href="http://alrw.github.io/testing-calls-using-http-in-angular/">Testing $http</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://localhost:2368/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head " style="background-image: url(../content/images/2016/02/Screen-Shot-2016-02-09-at-14-24-37.png)">
+    <nav class="main-nav overlay clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Integrating Jasmine Standalone and Travis CI using Grunt</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-02-09">09 February 2016</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>A while ago I started messing around with a few projects while trying to learn JavaScript, particularly focusing on how to bend it into working in an object oriented way. To test I used the excellent <a href="http://jasmine.github.io/">Jasmine Standalone Framework</a> which proved to be more than up to the task and was a natural tool to use given some prior experience with <a href="http://rspec.info/">Rspec</a>: a similar testing framework for Ruby. However recently, I have been working on creating an extension for chrome that includes some js scripts. Again Jasmine standalone was my tool of choice for testing my scripts but I had also wanted to be able use <a href="http://127.0.0.1:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/travis-ci.org">Travis CI</a> to automate my testing and of course to get that lovely green "build passing" badge onto my <code>README.md</code>. This lead me down a long and circuitous path, trawling through multiple blogs, nowhere was this covered in detail. Finally after putting the pieces of the jigsaw together I thought that this might be something worth sharing.</p>
+
+<p>If you want to follow through this walk-through step by step the first thing to do is download the Jasmine Standalone runner from <a href="https://github.com/jasmine/jasmine/releases">here</a>. As this already contains a number of prewritten specs as examples this is perfect to build upon.</p>
+
+<h2 id="gruntwhat">Grunt what?  </h2>
+
+<p>The first stage of this process was very much getting the tests to run through the command line. Once I could do that then I could simply set the <code>npm</code> script in my project to run that and voila my tests would be flying through Travis. Jasmine Standalone though does not really enable this. It's default manner of running tests is through the browser. So at this point I turned to the task manager <a href="http://gruntjs.com/">Grunt</a>. </p>
+
+<p>Grunt come to us as a node module which means that, first things first, we need a <code>package.json</code>. In a terminal inside the project directory run the following:</p>
+
+<pre><code>npm init  
+</code></pre>
+
+<p>Accept the default options at this stage and voila we will have the file we need. We are now ready to install our task manager:</p>
+
+<pre><code>npm install grunt-cli -g  
+</code></pre>
+
+<p>This will install the cli system wide. Now we install the dependencies within our project:</p>
+
+<pre><code>npm install grunt --save-dev  
+npm install grunt-contrib-jasmine --save-dev  
+</code></pre>
+
+<p>In order for Grunt to do what we want we need to set it up to carry out the tasks we want. Firstly this required a <code>Gruntfile</code>.</p>
+
+<pre><code>touch Gruntfile.js  
+</code></pre>
+
+<p>Open this file in your favourite text-editor and type in the following:</p>
+
+<pre><code>module.exports = function(grunt) {
+
+  grunt.initConfig({
+    jasmine: {
+      src: 'src/*.js',
+      options: {
+        specs: 'spec/*.js'
+      }
+    }
+  });
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+};
+</code></pre>
+
+<p>To put it simply this uses the grunt-contrib-jasmine module to load the files in the src and spec folders and using the command <code>grunt jasmine</code> we can now run all our tests in the command line.</p>
+
+<h2 id="integratingwithtravis">Integrating with Travis  </h2>
+
+<p>Now all we need to do is set everything up so that when we push our code to Github Travis correctly runs out tests.</p>
+
+<p>In your <code>package.json</code> replace this:</p>
+
+<pre><code>  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+</code></pre>
+
+<p>with this:</p>
+
+<pre><code>  "scripts": {
+    "test": "grunt jasmine"
+  },
+</code></pre>
+
+<p>This means that we have now set the default test command used by Travis to run our new grunt script.</p>
+
+<p>Lastly we need to create a <code>.travis.yml</code> file in order to tell Travis all of this.</p>
+
+<pre><code>touch .travis.yml  
+</code></pre>
+
+<p>Open this up and insert the following:</p>
+
+<pre><code>language: node_js  
+node_js:  
+  - "0.10"
+before_install:  
+  - npm install
+  - npm install -g grunt-cli
+</code></pre>
+
+<p>Travis will now be able to run all our tests and we can get that lovely green image onto our readmes.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="../author/andrew/">Andrew Werner</a></h4>
+
+                    <p>Read <a href="../author/andrew/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Integrating%20Jasmine%20Standalone%20and%20Travis%20CI%20using%20Grunt&amp;url=http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/integrating-jasmine-standalone-and-travis-ci-using-grunt/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev " style="background-image: url(../content/images/2016/02/Screen-Shot-2016-02-07-at-14-59-35.png)" href="../testing-calls-using-http-in-angular/">
+        <section class="post">
+            <h2>Testing the Angular $http Service</h2>
+            <p>As a number of smaller applications I've worked on have grown there has often been a requirement to integrate…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://localhost:2368">Tinker, Tailor, Soldier ... Coder?</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=7b31997186"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=7b31997186"></script>
+
+</body>
